@@ -1,0 +1,33 @@
+HOW TO BUILD LoStKernel KERNEL 2.6.35 FOR SPH-D710
+
+1. How to Build
+	a.Visit http://www.codesourcery.com/, download and install Sourcery G++ Lite 2009q3-68 toolchain for ARM EABI.
+	b.Edit Kernel/arch/arm/configs/LoStKernel_defconfig line 89:
+	CONFIG_INITRAMFS_SOURCE="/home/chris41g/android/touch/initramfs/"
+	with the absolute path to your initramfs
+	b.Edit Kernel/Makefile line 192:
+	CROSS_COMPILE	?= /home/chris41g/arm-2009q3/bin/arm-none-linux-gnueabi-
+	with the absolute path to your Cross Compiler installed above
+	c. Edit ncBuildHelper.sh line 13:
+	CROSS_COMPILE="/home/chris41g/arm-2009q3/bin/arm-none-linux-gnueabi-"
+	with the absolute path to your cross compiler installed above
+	
+	
+	
+2. Output files
+	$ make LoStKernel_defconfig
+	$ make 
+	Kernel : Kernel/arch/arm/boot/zImage
+	
+	$./ncBuildHelper.sh -C -b -t
+	Kernel : Kernel/arch/arm/boot/zImage
+	Tar : LoStKernel-1.0.0.0.tar
+	
+	$./ncBuildHelper.sh -C -b -z
+	Kernel : Kernel/arch/arm/boot/zImage
+	CWM Zip : LoStKernel-1.0.0.0.zip
+	
+3. How to make .tar.md5 binary for downloading into target.
+	- type following commands
+	$ md5sum -t LoStKernel-1.0.0.0.tar >> LoStKernel-1.0.0.0.tar
+	$ mv LoStKernel-1.0.0.0.tar LoStKernel-1.0.0.0.tar.md5

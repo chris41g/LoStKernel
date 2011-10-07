@@ -1,0 +1,28 @@
+assert(getprop("ro.product.device") == "SPH-D710" ||
+	getprop("ro.build.product") == "SPH-D710");
+ui_print("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
+ui_print("-*          chris41g and ACS present...       -*");
+ui_print("-*              CWM5Plus-1.1.0.0              -*");
+ui_print("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
+sleep(2);
+show_progress(1.335, 0);
+ui_print("Copying files...");
+assert(
+	package_extract_file("zImage", "/tmp/zImage");
+	);
+set_progress(0.3);
+ui_print("Flashing eg30Plus...");
+assert(
+	write_raw_image("/tmp/zImage", "/dev/block/mmcblk0p6");
+	);
+set_progress(0.3);
+
+ui_print("Clearing caches...");
+assert(
+	delete_recursive("/cache"),
+	delete_recursive("/data/dalvik-cache")
+	);
+set_progress(0.3);
+ui_print("Finished.");
+set_progress(0.1);
+sleep(2);
