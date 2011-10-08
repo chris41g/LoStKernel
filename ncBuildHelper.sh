@@ -220,9 +220,7 @@ COPY_MODULES()
 	echo "=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]"
 	local T1=$(date +%s)
 	echo "Begin copy modules..." && echo ""
-	pushd scripts > /dev/null
-		sh -c "update_modules.sh copy"
-	popd > /dev/null
+	sh -c "./scripts/update_modules.sh copy"
 	local T2=$(date +%s)
 	echo "" && echo "Copy modules took $(($T2 - $T1)) seconds."
 	echo "=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]"
@@ -233,9 +231,7 @@ STRIP_MODULES()
 	echo "=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]"
 	local T1=$(date +%s)
 	echo "Begin strip modules..." && echo ""
-	pushd scripts > /dev/null
-		sh -c "update_modules.sh strip"
-	popd > /dev/null
+	sh -c "./scripts/update_modules.sh strip"
 	local T2=$(date +%s)
 	echo "" && echo "Strip modules took $(($T2 - $T1)) seconds."
 	echo "=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]=]"
