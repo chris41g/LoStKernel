@@ -42,7 +42,7 @@ if [ "$1" == "cp" ] || [ "$1" == "copy" ] ; then
 	COPY_WITH_ECHO "bluetooth/bthid/bthid.ko" "bthid.ko"
 	COPY_WITH_ECHO "samsung/j4fs/j4fs.ko" "j4fs.ko"
 	COPY_WITH_ECHO "scsi/scsi_wait_scan.ko" "scsi_wait_scan.ko"
-	COPY_WITH_ECHO "net/wireless/bcm4330/dhd.ko" initramfs/lib/modules/
+	COPY_WITH_ECHO "net/wireless/bcm4330/dhd.ko" "dhd.ko"
 	COPY_WITH_ECHO "samsung/vibetonz/vibrator.ko" "vibrator.ko"
 	COPY_WITH_ECHO "staging/westbridge/astoria/switch/cyasswitch.ko" "cyasswitch.ko"
 	
@@ -55,7 +55,7 @@ if [ "$1" == "st" ] || [ "$1" == "strip" ] ; then
 	STRIP_WITH_ECHO "cyasswitch.ko"
 	STRIP_WITH_ECHO "j4fs.ko"
 	#STRIP_WITH_ECHO "dhd.ko"
-	STRIP_WITH_ECHO "vibrator.ko"
+	#STRIP_WITH_ECHO "vibrator.ko"
 	STRIP_WITH_ECHO "scsi_wait_scan.ko"
 	exit 0
 fi
