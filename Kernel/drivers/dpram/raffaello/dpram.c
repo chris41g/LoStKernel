@@ -286,7 +286,7 @@ static inline void check_pdp_table(const char*, int);
 static void cmd_error_display_handler(void);
 
 
-//#ifdef _ENABLE_ERROR_DEVICE
+#ifdef _ENABLE_ERROR_DEVICE
 static unsigned int dpram_err_len = 0;
 static char         dpram_err_buf[DPRAM_ERR_MSG_LEN];
 static unsigned int dpram_err_cause = 0;
@@ -305,7 +305,12 @@ static struct fasync_struct *dpram_dump_async_q;
 
 extern void usb_switch_mode(int);
 extern int sec_debug_level();
-//#endif    /* _ENABLE_ERROR_DEVICE */
+#else
+static char         dpram_err_buf[DPRAM_ERR_MSG_LEN];
+static unsigned int dpram_err_len = 0;
+static unsigned int dpram_dump_len = 0;
+static char         cp_ramdump_buff[16384];
+#endif    /* _ENABLE_ERROR_DEVICE */
 
 
 #ifndef DISABLE_IPC_DEBUG
@@ -1223,7 +1228,7 @@ static int dpram_init_magic_num(void)
 }
 
 
-//#ifdef _ENABLE_ERROR_DEVICE
+#ifdef _ENABLE_ERROR_DEVICE
 void request_phone_reset(void)
 {
     char buf[DPRAM_ERR_MSG_LEN];
@@ -1257,7 +1262,7 @@ void request_phone_reset(void)
     wake_up_interruptible(&dpram_err_wait_q);
     kill_fasync(&dpram_err_async_q, SIGIO, POLL_IN);
 }
-//#endif
+#endif
 
 
 static void dpram_send_mbx_BA(u16 irq_mask)
@@ -1580,10 +1585,10 @@ static int dpram_read_proc(char *page, char **start, off_t off,
     int fih, fit, foh, fot;
     int rih, rit, roh, rot;
 
-//#ifdef _ENABLE_ERROR_DEVICE
+#ifdef _ENABLE_ERROR_DEVICE
     char buf[DPRAM_ERR_MSG_LEN];
     unsigned long flags;
-//#endif    /* _ENABLE_ERROR_DEVICE */
+#endif    /* _ENABLE_ERROR_DEVICE */
 
     READ_FROM_DPRAM((void *)&magic, DPRAM_MAGIC_CODE_ADDRESS, sizeof(magic));
     READ_FROM_DPRAM((void *)&enable, DPRAM_ACCESS_ENABLE_ADDRESS, sizeof(enable));
@@ -1607,12 +1612,12 @@ static int dpram_read_proc(char *page, char **start, off_t off,
     out_interrupt = ioread16((void *)dpram_mbx_BA);
     in_interrupt = ioread16((void *)dpram_mbx_AB);
 
-//#ifdef _ENABLE_ERROR_DEVICE
+#ifdef _ENABLE_ERROR_DEVICE
     memset((void *)buf, '\0', DPRAM_ERR_MSG_LEN);
     local_irq_save(flags);
     memcpy(buf, dpram_err_buf, DPRAM_ERR_MSG_LEN - 1);
     local_irq_restore(flags);
-//#endif    /* _ENABLE_ERROR_DEVICE */
+#endif    /* _ENABLE_ERROR_DEVICE */
 
     p += sprintf(p,
             "-------------------------------------\n"
@@ -1773,7 +1778,9 @@ static int dpram_tty_ioctl(struct tty_struct *tty, struct file *file, unsigned i
         // Silent reset
         case MBX_CMD_PHONE_RESET:
             LOGA("IOCTL cmd = MBX_CMD_PHONE_RESET\n");
+#ifdef _ENABLE_ERROR_DEVICE
             request_phone_reset();
+#endif
             return 0;
 
         case DPRAM_PHONE_RAMDUMP_ON:
@@ -2155,7 +2162,7 @@ static void cmd_req_active_handler(void)
  */
 static void cmd_error_display_handler(void)
 {
-//#ifdef _ENABLE_ERROR_DEVICE
+#ifdef _ENABLE_ERROR_DEVICE
     unsigned short intr;
     unsigned long  flags;
     char buf[DPRAM_ERR_MSG_LEN];
@@ -2207,7 +2214,7 @@ static void cmd_error_display_handler(void)
     wake_up_interruptible(&dpram_err_wait_q);
     kill_fasync(&dpram_err_async_q, SIGIO, POLL_IN);
 #endif
-//#endif    /* _ENABLE_ERROR_DEVICE */
+#endif    /* _ENABLE_ERROR_DEVICE */
 }
 
 

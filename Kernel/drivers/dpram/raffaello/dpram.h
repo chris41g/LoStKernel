@@ -341,11 +341,13 @@ struct pdp_info {
 #define PRINT_FUNC()
 #endif
 
-//#ifdef _ENABLE_ERROR_DEVICE
+#ifdef _ENABLE_ERROR_DEVICE
 #define DPRAM_ERR_MSG_LEN       65
 #define DPRAM_ERR_DEVICE        "dpramerr"
 #define DPRAM_DUMP_DEVICE       "dpram_dump"
-//#endif	/* _ENABLE_ERROR_DEVICE */
+#else
+#define DPRAM_ERR_MSG_LEN       65
+#endif	/* _ENABLE_ERROR_DEVICE */
 
 
 /*
