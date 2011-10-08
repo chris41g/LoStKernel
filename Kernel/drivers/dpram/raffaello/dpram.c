@@ -1894,13 +1894,13 @@ static int dpram_tty_ioctl(struct tty_struct *tty, struct file *file, unsigned i
             }
             LOGE("succeeded in dpram_wait_response()!!!\n");
 		dpram_clear_response();
-
+#ifdef CONFIG_KERNEL_DEBUG_SEC
             // goto Upload mode
             if (kernel_sec_get_debug_level() != KERNEL_SEC_DEBUG_LEVEL_LOW) {
                 LOGE("Upload Mode!!!\n");
                 kernel_sec_dump_cp_handle2();
             }
-
+#endif
             return 0;
         }
 
