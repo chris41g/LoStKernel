@@ -285,7 +285,6 @@ config ARCH_AT91
 	bool "Atmel AT91"
 	select ARCH_REQUIRE_GPIOLIB
 	select HAVE_CLK
-	select ARCH_USES_GETTIMEOFFSET
 	help
 	  This enables support for systems based on the Atmel AT91RM9200,
 	  AT91SAM9 and AT91CAP9 processors.
@@ -1213,13 +1212,6 @@ source "drivers/pcmcia/Kconfig"
 
 endmenu
 
-menu "Samsung Kernel Debug Features"
-
-config KERNEL_DEBUG_SEC
-        bool "KERNEL_DEBUG_SEC"
-
-endmenu
-
 menu "Kernel Features"
 
 source "kernel/time/Kconfig"
@@ -1316,7 +1308,7 @@ source kernel/Kconfig.preempt
 config HZ
 	int
 	default 128 if ARCH_L7200
-	default 400 if ARCH_EBSA110 || ARCH_S3C2410 || ARCH_S5P6440 || ARCH_S5P6442 || \
+	default 200 if ARCH_EBSA110 || ARCH_S3C2410 || ARCH_S5P6440 || ARCH_S5P6442 || \
 		       ARCH_S5P6450 || ARCH_S5PV210 || ARCH_S5PV310
 	default OMAP_32K_TIMER_HZ if ARCH_OMAP && OMAP_32K_TIMER
 	default AT91_TIMER_HZ if ARCH_AT91
