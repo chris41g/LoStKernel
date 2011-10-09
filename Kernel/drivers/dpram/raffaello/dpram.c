@@ -36,7 +36,7 @@
 #ifdef CONFIG_KERNEL_DEBUG_SEC
 #include <linux/kernel_sec_common.h>
 #endif
-//#include <mach/ds_manager.h>
+#include <mach/ds_manager.h>
 
 #include "dpram.h"
 #include <mach/system.h>
@@ -286,7 +286,7 @@ static inline void check_pdp_table(const char*, int);
 static void cmd_error_display_handler(void);
 
 
-#ifdef _ENABLE_ERROR_DEVICE
+//#ifdef _ENABLE_ERROR_DEVICE
 static unsigned int dpram_err_len = 0;
 static char         dpram_err_buf[DPRAM_ERR_MSG_LEN];
 static unsigned int dpram_err_cause = 0;
@@ -305,12 +305,12 @@ static struct fasync_struct *dpram_dump_async_q;
 
 extern void usb_switch_mode(int);
 extern int sec_debug_level();
-#else
-static char         dpram_err_buf[DPRAM_ERR_MSG_LEN];
-static unsigned int dpram_err_len = 0;
-static unsigned int dpram_dump_len = 0;
-static char         cp_ramdump_buff[16384];
-#endif    /* _ENABLE_ERROR_DEVICE */
+//#else
+//static char         dpram_err_buf[DPRAM_ERR_MSG_LEN];
+//static unsigned int dpram_err_len = 0;
+//static unsigned int dpram_dump_len = 0;
+//static char         cp_ramdump_buff[16384];
+//#endif    /* _ENABLE_ERROR_DEVICE */
 
 
 #ifndef DISABLE_IPC_DEBUG

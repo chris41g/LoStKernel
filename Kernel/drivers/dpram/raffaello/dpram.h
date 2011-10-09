@@ -18,7 +18,7 @@
 /*
 ** FEATURE DEFINITIONs
 */
-//#define _DEBUG
+#define _DEBUG
 
 #define CDMA_IPC_C210_IDPRAM
 #define DPRAM_SIZE_16KB
