@@ -2,18 +2,30 @@
 # Remount filesystems RW
 busybox mount -o remount,rw / /
 busybox mount -o remount,rw /dev/block/mmcblk0p9 /system
-busybox --install -s /system/bin
-busybox --install -s /system/xbin
+if [ ! -e /system/xbin/busybox ]; then
+installbb();
+fi;
+if [ ! -e /system/bin/su ] && [ ! -e /system/xbin/su ]; then
+installsu();
+fi;
+installbb() {
+/sbin/busybox --install -s /system/xbin
 busybox ln -s /sbin/busybox /system/bin/busybox
+busybox ln -s /sbin/busybox /system/xbin/busybox
+};
+
+installsu(){
 chmod 06755 /sbin/su
 busybox rm /system/bin/su
 busybox rm /system/xbin/su
 busybox rm /system/bin/jk-su
 busybox cp -f /sbin/su /system/bin/su
+chmod 06755 /system/bin/su
 busybox ln -s /system/bin/su /system/xbin/su
 busybox rm -rf /bin/su
 busybox rm -rf /sbin/su
-
+};
+busybox sh /sbin/bbuninstall.sh
 if [ ! -f "/system/app/Superuser.apk" ] && [ ! -f "/data/app/Superuser.apk" ] && [[ ! -f "/data/app/com.noshufou.android.su"* ]]; then
 	#if [ -f "/system/app/Asphalt5_DEMO_ANMP_Samsung_D700_Sprint_ML.apk" ]; then
 	#	busybox rm /system/app/Asphalt5_DEMO_ANMP_Samsung_D700_Sprint_ML.apk
