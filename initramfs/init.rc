@@ -702,7 +702,8 @@ on boot
 	chmod 0777 /system/etc/audio/ArkamysTuning.txt
 
 #	echo "1" > /sys/devices/platform/samsung-pd.2/s3cfb.0/mdnie
-
+	symlink /system/media/bootanimation.zip /system/media/sanim.zip
+    
     class_start default
 
 

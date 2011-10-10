@@ -1,20 +1,21 @@
 #!/system/bin/sh
 # Remount filesystems RW
-busybox mount -o remount,rw / /
-busybox mount -o remount,rw /dev/block/mmcblk0p9 /system
-if [ ! -e /system/xbin/busybox ]; then
-installbb();
-fi;
+/sbin/busybox mount -o remount,rw / /
+/sbin/busybox mount -o remount,rw /dev/block/mmcblk0p9 /system
+/sbin/busybox test -e /system/xbin/busybox || installbb();
 if [ ! -e /system/bin/su ] && [ ! -e /system/xbin/su ]; then
 installsu();
 fi;
-installbb() {
+installbb() 
+{
 /sbin/busybox --install -s /system/xbin
-busybox ln -s /sbin/busybox /system/bin/busybox
-busybox ln -s /sbin/busybox /system/xbin/busybox
+/sbin/busybox ln -s /sbin/busybox /system/bin/busybox
+/sbin/busybox ln -s /sbin/busybox /system/xbin/busybox
+sync
 };
 
-installsu(){
+installsu()
+{
 chmod 06755 /sbin/su
 busybox rm /system/bin/su
 busybox rm /system/xbin/su
@@ -36,16 +37,14 @@ if [ ! -f "/system/app/Superuser.apk" ] && [ ! -f "/data/app/Superuser.apk" ] &&
 	#if [ -f "/system/app/FreeHDGameDemos.apk" ]; then
 	#	busybox rm /system/app/FreeHDGameDemos.apk
 	#fi
- 	busybox cp /sbin/superuser.apk /system/app/superuser.apk
+ 	busybox cp /sbin/superuser.apk /data/app/superuser.apk
  fi
 busybox rm /sbin/superuser.apk
-sync
 # Enable init.d support
 if [ -d /system/etc/init.d ]
 then
 	logwrapper busybox run-parts /system/etc/init.d
 fi
-sync
 
 #setup proper passwd and group files for 3rd party root access
 # Thanks DevinXtreme
@@ -63,16 +62,13 @@ if [ ! -f "/system/etc/resolv.conf" ]; then
 	echo "nameserver 8.8.8.8" >> /system/etc/resolv.conf
 	echo "nameserver 8.8.4.4" >> /system/etc/resolv.conf
 fi
-sync
 # patch to prevent certain malware apps
 if [ -f "/system/bin/profile" ]; then
 	busybox rm /system/bin/profile
 fi
 touch /system/bin/profile
 chmod 644 /system/bin/profile
-if [ -f "/system/media/bootanimation.zip" ]; then
-ln -s /system/media/bootanimation.zip /system/media/sanim.zip
-fi
 # remount read only and continue
+sync
 busybox  mount -o remount,ro / /
 busybox  mount -o remount,ro /dev/block/mmcblk0p9 /system
