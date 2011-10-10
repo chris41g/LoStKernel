@@ -2053,9 +2053,10 @@ static int dpram_dump_ioctl(struct inode *inode, struct file *filp,
             close_cp_ramdump();
 
             // Go to Upload mode
+#ifdef CONFIG_KERNEL_DEBUG_SEC
             if (kernel_sec_get_debug_level() != KERNEL_SEC_DEBUG_LEVEL_LOW)
                 kernel_sec_dump_cp_handle2();
-
+#endif
             return 0;
         }
 
