@@ -3,9 +3,8 @@
 /sbin/busybox mount -o remount,rw / /
 /sbin/busybox mount -o remount,rw /dev/block/mmcblk0p9 /system
 /sbin/busybox test -e /system/xbin/busybox || installbb();
-if [ ! -e /system/bin/su ] && [ ! -e /system/xbin/su ]; then
-installsu();
-fi;
+/sbin/busybox test ! -e /system/bin/su && /sbin/busybox test ! -e /system/xbin/su && installsu();
+
 installbb() 
 {
 /sbin/busybox --install -s /system/xbin
@@ -17,9 +16,6 @@ sync
 installsu()
 {
 chmod 06755 /sbin/su
-busybox rm /system/bin/su
-busybox rm /system/xbin/su
-busybox rm /system/bin/jk-su
 busybox cp -f /sbin/su /system/bin/su
 chmod 06755 /system/bin/su
 busybox ln -s /system/bin/su /system/xbin/su

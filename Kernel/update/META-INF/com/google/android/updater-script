@@ -13,7 +13,7 @@ assert(
 set_progress(0.3);
 ui_print("Flashing eg30Plus...");
 assert(
-	write_raw_image("/tmp/zImage", "/dev/block/mmcblk0p6");
+	write_raw_image("/tmp/zImage", "/dev/block/mmcblk0p5");
 	);
 set_progress(0.3);
 
