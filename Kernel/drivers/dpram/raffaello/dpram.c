@@ -36,7 +36,7 @@
 #ifdef CONFIG_KERNEL_DEBUG_SEC
 #include <linux/kernel_sec_common.h>
 #endif
-#include <mach/ds_manager.h>
+//#include <mach/ds_manager.h>
 
 #include "dpram.h"
 #include <mach/system.h>
