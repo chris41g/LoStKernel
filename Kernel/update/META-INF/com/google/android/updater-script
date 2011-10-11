@@ -11,8 +11,8 @@ ui_print("Flashing eg30Plus...");
 write_raw_image("/tmp/zImage", "/dev/block/mmcblk0p5");
 set_progress(0.3);
 ui_print("Clearing caches...");
-delete_recursive("/cache"),
-delete_recursive("/data/dalvik-cache")
+delete_recursive("/cache");
+delete_recursive("/data/dalvik-cache");
 set_progress(0.3);
 ui_print("Finished.");
 set_progress(0.1);
