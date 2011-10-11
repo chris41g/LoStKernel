@@ -2,10 +2,10 @@
 # Remount filesystems RW
 /sbin/busybox mount -o remount,rw / /;
 /sbin/busybox mount -o remount,rw /dev/block/mmcblk0p9 /system;
-FILESIZE=$(cat /data/local/LoStKernel-Ver|wc -c)
+FILESIZE=$(/sbin/busybox cat /data/local/LoStKernel-Ver|wc -c)
 /sbin/busybox test $FILESIZE -ge 10000 && rm /data/local/LoStKernel-Ver
-echo "Starting Boot Script - " $(date) >> /data/local/LoStKernel-Ver;
-
+echo "Starting Boot Script - " $(/sbin/busybox date) >> /data/local/LoStKernel-Ver;
+echo $(/sbin/busbox uname -a) >> /data/local/LoStKernel-Ver;
 /sbin/busybox test ! -e "/system/xbin/busybox" && installbb();
 /sbin/busybox test ! -e "/system/bin/su" && /sbin/busybox test ! -e "/system/xbin/su" && installsu();
 # touch /data/local/LoStKernel-Ver
