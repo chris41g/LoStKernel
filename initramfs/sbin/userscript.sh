@@ -12,12 +12,12 @@ fi
 /sbin/busybox echo $(/sbin/busybox uname -a) >> /data/local/LoStKernel-Ver
 
 if /sbin/busybox test ! -e "/system/xbin/busybox"; then
-installbb()
+installbb
 fi
 
 if /sbin/busybox test ! -e "/system/bin/su"; then
 	if /sbin/busybox test ! -e "/system/xbin/su"; then
-	installsu()
+	installsu
 	fi
 fi
 
