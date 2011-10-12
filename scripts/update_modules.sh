@@ -10,7 +10,7 @@
 
 #define base paths
 P_DIR="/home/chris41g/android/LoStKernel"
-SRC_BASE="$P_DIR/Kernel/drivers"
+SRC_BASE="$P_DIR/Kernel"
 DST_BASE="initramfs/lib/modules"
 CC_STRIP="/home/chris41g/arm-2009q3/bin/arm-none-linux-gnueabi-strip"
 
@@ -39,12 +39,13 @@ SHOW_HELP()
 
 if [ "$1" == "cp" ] || [ "$1" == "copy" ] ; then
 	#copy modules
-	COPY_WITH_ECHO "bluetooth/bthid/bthid.ko" "bthid.ko"
-	COPY_WITH_ECHO "samsung/j4fs/j4fs.ko" "j4fs.ko"
-	COPY_WITH_ECHO "scsi/scsi_wait_scan.ko" "scsi_wait_scan.ko"
-	COPY_WITH_ECHO "net/wireless/bcm4330/dhd.ko" "dhd.ko"
-	COPY_WITH_ECHO "samsung/vibetonz/vibrator.ko" "vibrator.ko"
-	COPY_WITH_ECHO "staging/westbridge/astoria/switch/cyasswitch.ko" "cyasswitch.ko"
+	COPY_WITH_ECHO "drivers/bluetooth/bthid/bthid.ko" "bthid.ko"
+	COPY_WITH_ECHO "drivers/samsung/j4fs/j4fs.ko" "j4fs.ko"
+	COPY_WITH_ECHO "drivers/scsi/scsi_wait_scan.ko" "scsi_wait_scan.ko"
+	COPY_WITH_ECHO "drivers/net/wireless/bcm4330/dhd.ko" "dhd.ko"
+	COPY_WITH_ECHO "drivers/samsung/vibetonz/vibrator.ko" "vibrator.ko"
+	COPY_WITH_ECHO "drivers/staging/westbridge/astoria/switch/cyasswitch.ko" "cyasswitch.ko"
+	COPY_WITH_ECHO "fs/cifs/cifs.ko" "cifs.ko"
 	
 	exit 0
 fi
@@ -57,6 +58,7 @@ if [ "$1" == "st" ] || [ "$1" == "strip" ] ; then
 	#STRIP_WITH_ECHO "dhd.ko"
 	#STRIP_WITH_ECHO "vibrator.ko"
 	STRIP_WITH_ECHO "scsi_wait_scan.ko"
+	STRIP_WITH_ECHO "cifs.ko"
 	exit 0
 fi
 
