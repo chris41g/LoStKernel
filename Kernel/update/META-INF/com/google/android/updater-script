@@ -1,6 +1,6 @@
 ui_print("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
 ui_print("-*          chris41g and ACS present...       -*");
-ui_print("-*              CWM5Plus-1.0.1.2              -*");
+ui_print("-*              LoStKernel-1.0.2.0            -*");
 ui_print("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
 sleep(2);
 show_progress(1.335, 0);
