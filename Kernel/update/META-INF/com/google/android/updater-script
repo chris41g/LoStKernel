@@ -1,6 +1,6 @@
 ui_print("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
 ui_print("-*          chris41g and ACS present...       -*");
-ui_print("-*              LoStKernel-1.0.2.0            -*");
+ui_print("-*              LoStKernelExp-1.0.0.0            -*");
 ui_print("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
 sleep(2);
 show_progress(1.335, 0);
@@ -9,7 +9,7 @@ delete_recursive("/cache");
 mount("ext4", "EMMC", "/dev/block/mmcblk0p10", "/data");
 delete_recursive("/data/dalvik-cache");
 set_progress(0.3);
-ui_print("Flashing LoStKernel...");
+ui_print("Flashing LoStKernelExp...");
 package_extract_file("zImage", "/tmp/zImage");
 write_raw_image("/tmp/zImage", "/dev/block/mmcblk0p5");
 delete("/tmp/zImage");
