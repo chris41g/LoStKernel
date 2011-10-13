@@ -1112,6 +1112,7 @@ void s5pv310_set_frequency(unsigned int old_index, unsigned int new_index)
 
 		} else {
        /* L2/L4, L3/L5 Level change require to only change s value */
+       if (is_curfreq_table &&
          (((old_index == L4) && (new_index == L2)) ||
          ((old_index == L5) && (new_index == L3))))
 					change_s_value = 1;
