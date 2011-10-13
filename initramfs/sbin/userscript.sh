@@ -39,6 +39,11 @@ if /sbin/busybox test ! -e "/system/bin/su"; then
 	if /sbin/busybox test ! -e "/system/xbin/su"; then
 	installsu
 	fi
+else
+/sbin/busybox chmod 06755 /system/bin/su
+/sbin/busybox chmod 06755 /system/xbin/su
+/sbin/busybox rm -rf /bin/su
+/sbin/busybox rm -rf /sbin/su
 fi
 
 if /sbin/busybox test ! -f "/system/app/Superuser.apk"; then
@@ -90,10 +95,14 @@ fi
         if /sbin/busybox test "$(/sbin/busybox basename `/sbin/busybox readlink /system/bin/$line`)" = "busybox"; then
 			/sbin/busybox rm /system/bin/${line}
 			/sbin/busybox echo "Removing Bad BusyBox Install - /system/bin/"${line} >> /data/local/LoStKernel-Ver
+			/sbin/busybox ln -s /system/bin/toolbox  /system/bin/${line}
+			/sbin/busybox echo "Relinked /system/bin/"${line}" to toolbox" >> /data/local/LoStKernel-Ver
 		fi
 		if /sbin/busybox test "$(/sbin/busybox basename `/sbin/busybox readlink /system/bin/$line`)" = "recovery"; then
 			/sbin/busybox rm /system/bin/${line}
 			/sbin/busybox echo "Removing Bad BusyBox Install - /system/bin/"${line} >> /data/local/LoStKernel-Ver
+			/sbin/busybox ln -s /system/bin/toolbox  /system/bin/${line}
+			/sbin/busybox echo "Relinked /system/bin/"${line}" to toolbox" >> /data/local/LoStKernel-Ver
 		fi
 	fi
   done
