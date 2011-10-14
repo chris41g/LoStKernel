@@ -95,25 +95,28 @@ fi
         if /sbin/busybox test "$(/sbin/busybox basename `/sbin/busybox readlink /system/bin/$line`)" = "busybox"; then
 			/sbin/busybox rm /system/bin/${line}
 			/sbin/busybox echo "Removing Bad BusyBox Install - /system/bin/"${line} >> /data/local/LoStKernel-Ver
-			/sbin/busybox ln -s /system/bin/toolbox  /system/bin/${line}
-			/sbin/busybox echo "Relinked /system/bin/"${line}" to toolbox" >> /data/local/LoStKernel-Ver
+			for a in cat chmod chown cmp date dd df dmesg geteven getprop hd id ifconfig iftop insmod ioctl ionice kill ln log ls lsmod lsof mkdir mount mv nandread netstat newfs_msdos notify printenv ps reboot renice rm rmdir rmmod route schedtop sendevent setconsole setprop sleep smd start stop sync top umount uptime vmstat watchprops wipe 
+				do
+					if [ ${line} == ${a} ]; then
+						/sbin/busybox ln -s /system/bin/toolbox  /system/bin/${line}
+						/sbin/busybox echo "Relinked /system/bin/"${line}" to toolbox" >> /data/local/LoStKernel-Ver
+					fi
+				done
 		fi
 		if /sbin/busybox test "$(/sbin/busybox basename `/sbin/busybox readlink /system/bin/$line`)" = "recovery"; then
 			/sbin/busybox rm /system/bin/${line}
 			/sbin/busybox echo "Removing Bad BusyBox Install - /system/bin/"${line} >> /data/local/LoStKernel-Ver
-			/sbin/busybox ln -s /system/bin/toolbox  /system/bin/${line}
-			/sbin/busybox echo "Relinked /system/bin/"${line}" to toolbox" >> /data/local/LoStKernel-Ver
+			for a in cat chmod chown cmp date dd df dmesg geteven getprop hd id ifconfig iftop insmod ioctl ionice kill ln log ls lsmod lsof mkdir mount mv nandread netstat newfs_msdos notify printenv ps reboot renice rm rmdir rmmod route schedtop sendevent setconsole setprop sleep smd start stop sync top umount uptime vmstat watchprops wipe 
+				do
+					if [ ${line} == ${a} ]; then
+						/sbin/busybox ln -s /system/bin/toolbox  /system/bin/${line}
+						/sbin/busybox echo "Relinked /system/bin/"${line}" to toolbox" >> /data/local/LoStKernel-Ver
+					fi
+				done
 		fi
 	fi
   done
-# Relink Toolbox
-
-for a in cat chmod chown cmp date dd df dmesg geteven getprop hd id ifconfig iftop insmod ioctl ionice kill ln log ls lsmod lsof mkdir mount mv nandread netstat newfs_msdos notify printenv ps reboot renice rm rmdir rmmod route schedtop sendevent setconsole setprop sleep smd start stop sync top umount uptime vmstat watchprops wipe 
-do
-/sbin/busybox ln -s /system/bin/toolbox  /system/bin/${a}
-done
 /sbin/busybox rm /system/bin/busybox
-/sbin/busybox echo "Relinked Toolbox in /system/bin" >> /data/local/LoStKernel-Ver
 # remount read only and continue
 sync
 /sbin/busybox echo "Bootscript Ended - " $(/sbin/busybox date)  >> /data/local/LoStKernel-Ver
