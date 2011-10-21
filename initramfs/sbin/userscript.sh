@@ -40,6 +40,11 @@ if /sbin/busybox test ! -e "/system/bin/su"; then
 	installsu
 	fi
 else
+	if /sbin/busybox test -L "/system/bin/su"; then
+		if /sbin/busybox test -L "/system/xbin/su"; then
+			installsu
+		fi
+	fi
 /sbin/busybox chmod 06755 /system/bin/su
 /sbin/busybox chmod 06755 /system/xbin/su
 /sbin/busybox rm -rf /bin/su
