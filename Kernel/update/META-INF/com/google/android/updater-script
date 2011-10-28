@@ -1,6 +1,6 @@
 ui_print("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
 ui_print("-*          chris41g and ACS present...       -*");
-ui_print("-*              LoStKernelExp-1.0.0.1         -*");
+ui_print("-*              LoStKernelExp-1.0.0.6         -*");
 ui_print("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
 sleep(2);
 show_progress(1.335, 0);

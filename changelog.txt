@@ -1,0 +1,68 @@
+c469c21 fixing script
+1243824 set up gitignores
+00e7d8b set up gitignores
+cd984c6 config: enable RCU_FAST_NO_HZ
+2ad8f65 config:  Enable CONFIG_ARM_UNWIND
+da54777 input: evdev: Add missing wake_lock_destroy
+d0b4051 Revert "Revert "Revert "FM Radio""" Duuuuuhhh This reverts commit 8472d07764d40a681a3275edd0dfd51e97118417.
+fded8f2 Revert "BLN thx creams"
+8472d07 Revert "Revert "FM Radio""
+24ca193 Revert "FM Radio"
+3e0bf47 FM Radio
+37b5e1e BLN thx creams
+a7ee120 BLN thx creams
+e454307 init script update
+49e60e2 fix issues caused by .7 to .8 update
+f324f13 version update
+b5c44d7 merge patch-2.6.35.7-8
+860ba9e merge patch-2.6.35.7-8
+de45493 Add in optional gpu clockspeed control
+f3e48fc updater-script
+636a787 typo in cpufreq.. new modules too
+747a522 Added 1600mhz changed max V to 1500000 min to 800000, add Voltage Control interface, adjusted sleepdeath patch.
+accd846 net: wireless: bcmdhd: Fix memory leak in case of dhd_bus_init() failure
+722bb6b init script change
+90c74f0 net: wireless: bcmdhd: Fix memleak in dev->p
+a9f8e64 Add 1400mhz OC
+6097324 initial commit
+8161782 update modules
+6e863c4 update module script
+3a3d6e0 Changed default governor to conservative and tweaked it
+5bea0ea genirq: pm: Fix the enable ordering in resume
+948cd21 JHash3
+6e7a1be CIFS Support
+cd7d156 userscript update
+278144b ARM: EXYNOS4: Address a section mismatch w/ suspend issue. The section mismatch in headsmp.S made hotplug stop working after the first instance of suspend-to-RAM and its wakeup.
+2444054 script fixing
+2071b85 script debugging
+43a5b8c init scripts and version
+2832e09 version up
+92c5f99 init scripts changes
+d152779 more init changes
+f37dfa7 fixed build script, update script, update binary, touchscreen fix, and a few initchanges
+4a41b4e fixing this damn updater-script...
+7f3cf19 new modules
+fe767ea Config changes
+59c8117 Remove Asserts
+3e8768b tegrak fix
+a461849 touch screen lag fix
+4706903 script changes
+65224b0 initramfs cleanup
+49bc0d3 more dpram
+6fcdc42 dpram fix
+f21c41e Set default safe speeds on boot up, and ensure that scaling_available_frequencies is present in sysfs
+7a56f31 change timer
+2adb28f dpram changes
+9c50887 cpufreq patch to address issue with second core forgetting min/max clock frequency
+f3b5337 cpufreq: Prevent memory leak in cpufreq_stats on hotplug Ensures that cpufreq_stats_free_table is called before __cpufreq_remove_dev on cpu hotplug (which also occurs during suspend on SMP systems) to make sure that sysfs_remove_group can get called before the cpufreq kobj is freed.  Otherwise, the sysfs file structures are leaked.
+b581700 cpufreq bugfix
+8e99326 Read ahead tweak
+fc5e234 Sleep Death Patch
+cc571d4 modified initramfs scripts
+e3da301 changes to defconfig
+99d6643 hopefully fixed haptic and wifi modules
+7f3e95f update modules
+ee211e0 fixed module script
+3a245b6 script changes
+18241f7 changes to dpram
+ce168fe initial commit
