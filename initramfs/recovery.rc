@@ -87,7 +87,7 @@ chmod 755 /sbin/recovery.sh
 service sdx /sbin/recovery.sh   
 critical
 user root 
-oneshot
+
 service adbd /sbin/adbd recovery
 
 on property:persist.service.adb.enable=1
