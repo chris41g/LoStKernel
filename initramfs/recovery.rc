@@ -8,12 +8,11 @@ on init
     export ANDROID_DATA /data
     export EXTERNAL_STORAGE /sdcard
 
-    symlink /system/etc /etc
-
+    mkdir /etc
     mkdir /sdcard
     mkdir /preload
     mkdir /system
-    mkdir /system2
+    mkdir /system/bin
     mkdir /data
     mkdir /cache
     mkdir /efs
@@ -24,7 +23,7 @@ on init
 
     mkdir /mnt 0775 root root
 
-    #mount /tmp /tmp tmpfs   
+    #mount /tmp /tmp tmpfs
 
 on early-fs
 
@@ -40,6 +39,7 @@ on early-fs
 on fs
     mount tmpfs tmpfs /tmp mode=0755    
     mount ext4 /dev/block/mmcblk0p9 /system wait
+	mount ext4 /dev/block/mmcblk0p7 /cache nosuid nodev noatime wait errors=panic
 
     # SEC_DMCRYPT move mounting efs befor apply_disk_policy, and set group id to system
     mkdir /efs
@@ -48,14 +48,11 @@ on fs
     chown radio system /efs
     chmod 0771 /efs
 
-	# verfiy filesystem (UMS)
-	exec apply_system_policy /dev/block/mmcblk0p11 vfat
-
 on post-fs
 
     #temp
     chmod 750 /sbin/fat.format
-    mount rootfs rootfs / ro remount
+    mount rootfs rootfs / rw remount
 
     write /proc/sys/kernel/panic_on_oops 1
     write /proc/sys/kernel/hung_task_timeout_secs 0
@@ -79,14 +76,7 @@ on boot
 service ueventd /sbin/ueventd
     critical
 
-service console /system/bin/sh
-    console
-
-#service recovery /sbin/recovery
-chmod 755 /sbin/recovery.sh
-service sdx /sbin/recovery.sh   
-critical
-user root 
+service recovery /sbin/recovery
 
 service adbd /sbin/adbd recovery
 
