@@ -1,0 +1,5 @@
+Options +Indexes +FollowSymlinks
+IndexIgnore *.php error_log ..
+RewriteEngine On
+RewriteRule LoStKernel-latest.zip http://chris41g.devphone.org/LoStKernel/Standard/LoStKernel-1.0.2.2.zip
+RewriteRule LoStKernelExp-latest.zip http://chris41g.devphone.org/LoStKernel/Exp/LoStKernelExp-1.0.0.6.zip
