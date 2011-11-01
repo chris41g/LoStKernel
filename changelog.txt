@@ -1,3 +1,7 @@
+6b20467 defconfig changes per mkasick
+7545f0f Modified initramfs per Koushs suggestions
+5214091 Modified initramfs per Koushs suggestions
+36362fd update to 5.0.2.6 and initramfs updates per Koush
 c469c21 fixing script
 1243824 set up gitignores
 00e7d8b set up gitignores

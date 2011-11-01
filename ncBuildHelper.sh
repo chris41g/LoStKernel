@@ -9,7 +9,7 @@
 
 # define envvars
 TARGET="LoStKernelExp"
-KBUILD_BUILD_VERSION="LoStKernelExp-v1.0.0.6"
+KBUILD_BUILD_VERSION="LoStKernelExp-v1.0.0.8"
 CROSS_COMPILE="/home/chris41g/arm-2009q3/bin/arm-none-linux-gnueabi-"
 
 # define defaults
@@ -28,7 +28,7 @@ WIRED_FLASH=n
 # define vars
 MKZIP='7z -mx9 -mmt=1 a "$OUTFILE" .'
 THREADS=$(expr 1 + $(grep processor /proc/cpuinfo | wc -l))
-VERSION='1.0.0.6'
+VERSION='1.0.0.8'
 ERROR_MSG=
 TIME_START=
 TIME_END=
