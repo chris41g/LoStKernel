@@ -31,10 +31,6 @@ fi
 /sbin/busybox echo "Starting Boot Script - " $(/sbin/busybox date) >> /data/local/LoStKernel-Ver
 /sbin/busybox echo $(/sbin/busybox uname -a) >> /data/local/LoStKernel-Ver
 
-if /sbin/busybox test ! -e "/system/xbin/busybox"; then
-installbb
-fi
-
 if /sbin/busybox test ! -e "/system/bin/su"; then
 	if /sbin/busybox test ! -e "/system/xbin/su"; then
 	installsu
@@ -117,8 +113,13 @@ fi
 	fi
   done
 /sbin/busybox rm /system/bin/busybox
+if /sbin/busybox test ! -e "/system/xbin/busybox"; then
+installbb
+else
+busybox rm -Rf /sbin/busybox
+fi
 # remount read only and continue
 sync
-/sbin/busybox echo "Bootscript Ended - " $(/sbin/busybox date)  >> /data/local/LoStKernel-Ver
-/sbin/busybox mount -o remount,ro / /
-/sbin/busybox mount -o remount,ro /dev/block/mmcblk0p9 /system
+busybox echo "Bootscript Ended - " $(/sbin/busybox date)  >> /data/local/LoStKernel-Ver
+busybox mount -o remount,ro / /
+busybox mount -o remount,ro /dev/block/mmcblk0p9 /system
